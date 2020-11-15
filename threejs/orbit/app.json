@@ -1,0 +1,153 @@
+{
+	"metadata": {
+		"type": "App"
+	},
+	"project": {
+		"gammaInput": false,
+		"gammaOutput": false,
+		"shadows": true,
+		"editable": true,
+		"vr": false
+	},
+	"camera": {
+		"metadata": {
+			"version": 4.4,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"object": {
+			"uuid": "2AB28E72-2599-4F86-86BF-77679735C882",
+			"type": "PerspectiveCamera",
+			"name": "Camera",
+			"matrix": [0.4956503212451935,-9.486578633755016e-9,-0.8685221672058105,0,-0.2935980260372162,0.9411305785179138,-0.16755124926567078,0,0.8173927664756775,0.3380432426929474,0.46647167205810547,0,97.75343322753906,40.427181243896484,55.786163330078125,1],
+			"fov": 50,
+			"zoom": 1,
+			"near": 0.1,
+			"far": 10000,
+			"focus": 10,
+			"aspect": 1.3895216400911161,
+			"filmGauge": 35,
+			"filmOffset": 0
+		}
+	},
+	"scene": {
+		"metadata": {
+			"version": 4.4,
+			"type": "Object",
+			"generator": "Object3D.toJSON"
+		},
+		"geometries": [
+			{
+				"uuid": "2CFFF69E-1D05-4960-B221-AD6D6C2F876C",
+				"type": "SphereBufferGeometry",
+				"radius": 1,
+				"widthSegments": 32,
+				"heightSegments": 16,
+				"phiStart": 0,
+				"phiLength": 6.283185307179586,
+				"thetaStart": 0,
+				"thetaLength": 3.141592653589793
+			},
+			{
+				"uuid": "06C6A904-1AB8-42BE-B579-2211ACC20482",
+				"type": "SphereBufferGeometry",
+				"radius": 1,
+				"widthSegments": 32,
+				"heightSegments": 16,
+				"phiStart": 0,
+				"phiLength": 6.283185307179586,
+				"thetaStart": 0,
+				"thetaLength": 3.141592653589793
+			}],
+		"materials": [
+			{
+				"uuid": "B0BD9597-CA92-4355-A725-58A73B82CFC1",
+				"type": "LineBasicMaterial",
+				"color": 16711680,
+				"depthFunc": 3,
+				"depthTest": true,
+				"depthWrite": true
+			},
+			{
+				"uuid": "911C16C4-6EAA-4D1A-AAC8-05649B848A37",
+				"type": "MeshStandardMaterial",
+				"color": 255,
+				"roughness": 0.5,
+				"metalness": 0.9,
+				"emissive": 0,
+				"depthFunc": 3,
+				"depthTest": true,
+				"depthWrite": true,
+				"skinning": false,
+				"morphTargets": false
+			}],
+		"object": {
+			"uuid": "54074388-2DF1-4E56-A592-F2F11749C9A9",
+			"type": "Scene",
+			"name": "Scene",
+			"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+			"children": [
+				{
+					"uuid": "D4E38B8D-3A77-4815-AC79-11A98F3994C8",
+					"type": "Mesh",
+					"name": "Sun",
+					"matrix": [10,0,0,0,0,10,0,0,0,0,10,0,0,0,0,1],
+					"geometry": "2CFFF69E-1D05-4960-B221-AD6D6C2F876C",
+					"material": "B0BD9597-CA92-4355-A725-58A73B82CFC1"
+				},
+				{
+					"uuid": "B51C9062-4510-4632-B4BB-4E4ABF5EF2AB",
+					"type": "AmbientLight",
+					"name": "AmbientLight",
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,12.131787300109863,0,1],
+					"color": 16777215,
+					"intensity": 200
+				},
+				{
+					"uuid": "CACC2F05-BCAE-46FC-A6D8-9ECF41747B4D",
+					"type": "Mesh",
+					"name": "Sphere 2",
+					"matrix": [1.7999999523162842,0,0,0,0,1.7999999523162842,0,0,0,0,1.7999999523162842,0,30,0,0,1],
+					"geometry": "06C6A904-1AB8-42BE-B579-2211ACC20482",
+					"material": "911C16C4-6EAA-4D1A-AAC8-05649B848A37"
+				},
+				{
+					"uuid": "EE14C190-DE84-441A-9185-F4902CAE3110",
+					"type": "PointLight",
+					"name": "PointLight 3",
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,10,0,0,1],
+					"color": 16777215,
+					"intensity": 100,
+					"distance": 100,
+					"decay": 1,
+					"shadow": {
+						"camera": {
+							"uuid": "5241F038-A84D-449A-95D0-4F55AB599DD5",
+							"type": "PerspectiveCamera",
+							"fov": 90,
+							"zoom": 1,
+							"near": 0.5,
+							"far": 500,
+							"focus": 10,
+							"aspect": 1,
+							"filmGauge": 35,
+							"filmOffset": 0
+						}
+					}
+				}],
+			"background": 0
+		}
+	},
+	"scripts": {
+		"CACC2F05-BCAE-46FC-A6D8-9ECF41747B4D": [
+			{
+				"name": "orbit",
+				"source": "var oi = 0;\nfunction update( event ) {\noi = oi+0.01;\nthis.position.x = Math.sin(oi) * 50;\nthis.position.z= Math.cos(oi)*50;\n}"
+			}],
+		"EE14C190-DE84-441A-9185-F4902CAE3110": [
+			{
+				"name": "light",
+				"source": "var ppi = 0;\nfunction update( event ) {\nppi = ppi+0.01;\nthis.position.x = Math.sin(ppi) * 10;\nthis.position.z= Math.cos(ppi)*10;\n}"
+			}]
+	}
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Great GPU Pressure</title>
+		<meta charset="utf-8">
+		<meta name="generator" content="Three.js Editor">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: sans-serif;
+				font-size: 11px;
+				background-color: #000;
+				margin: 0px;
+			}
+			canvas {
+				display: block;
+			}
+		</style>
+		<script src="stats.js"/>
+	</head>
+	<body ontouchstart="">
+		<script type="module">
+
+			import * as THREE from './js/three.module.js';
+			import { APP } from './js/app.js';
+			import { VRButton } from './js/VRButton.js';
+
+			window.THREE = THREE; // Used by APP Scripts.
+			window.VRButton = VRButton; // Used by APP Scripts.
+
+			var loader = new THREE.FileLoader();
+			loader.load( 'app.json', function ( text ) {
+
+				var player = new APP.Player();
+				player.load( JSON.parse( text ) );
+				player.setSize( window.innerWidth, window.innerHeight );
+				player.play();
+
+				document.body.appendChild( player.dom );
+
+				window.addEventListener( 'resize', function () {
+
+					player.setSize( window.innerWidth, window.innerHeight );
+
+				} );
+
+			} );
+			
+			var  stats = null;
+			function init() {
+				var init_stats = initStats();
+			}
+			function initStats() {
+				stats = new Stats();
+				//设置统计模式
+				stats.setMode(0); // 0: fps, 1: ms
+				//统计信息显示在左上角
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.left = '0px';
+				stats.domElement.style.top = '0px';
+				//将统计对象添加到对应的<div>元素中
+				document.getElementById("Stats-output").appendChild(stats.domElement);
+				return stats;
+			}
+			function updateS() {
+				stats.update();
+			}
+			setInterval("updateS()", 100);
+			window.onload = init;
+		</script>
+		<div id="Stats-output">
+	</body>
+</html>

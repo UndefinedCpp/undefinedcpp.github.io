@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<script src="cryptojs/crypto-js.js"></script>
+<head>
+<title>Pass 3</title>
+</head>
+<body>
+检查你上一关的key=
+<input id="key"></input>
+<br>
+<p>这一关是代码题，无限制时间/内存，把答案输入下面的框中。
+<br><i>代码运行得快不快，取决于你的算法！</i>
+<br><br>
+<b>题目描述</b><br>
+<p>定义以下几个函数：theta(x)，K(x)，f(x)，D(x)，H(x)。<br>
+<p>其中：<br>
+<ul>
+<li><p style="font-family:consolas">theta(x)=在二进制数后面添加一个1011，不管高位是否溢出<br></li>
+<p>例如：x=十进制213=二进制11010101，则theta(x)=11010101<b>1011</b>，添加1011<br>
+<li><p style="font-family:consolas">K(x)=theta(x)前16位 xor D(x) + theta(x)后16位 xor D(not x)<br></li>
+<p>其中xor为异或操作，not为取反操作<br>
+<li><p style="font-family:consolas">D(x)=执行(x mod 256)轮H(x)<br></li>
+<p>解释：可理解为以下伪代码：<p style="font-family:consolas">D(x)={result=0; for(x%128){result=H(result);}}<br>
+<li><p style="font-family:consolas">f(x)=执行8192轮K(x xor 上一轮值)<br></li>
+<p>解释：可理解为以下伪代码：<p style="font-family:consolas">f(x)={result=0; for(8192){result=K(result xor x);}}<br>
+<li><p style="font-family:consolas">H(x)是CRC32算法（见<a href="crc.html">这里</a>参考实现）<br></li>
+</ul>
+<p style="font-family:consolas">求一个数，使得f(x)在[0x379C70F0,0x379C70FF)的区间内。</p><br>
+<i>注：提及“整数”皆为unsigned int类型。</i><br>
+<i>另注：这个程序可能会运行数分钟~</i><br><br>
+<b>f(x)测试样例</b><br>
+<ul>
+<li>输入100，输出0x2B1762B9</li>
+<li>输入123，输出0x85FAA5D3</li>
+<li>输入222，输出0x6AFD1028</li>
+<li>输入10108899，输出0x30C9EC92</li>
+</ul>
+<br>
+<b>输入你的答案：</b>
+<input id="answer"></input><button onclick="verify()">验证答案！</button>
+<br>
+<div style="color:green" id="out"></div>
+<br>最后一关在<a href="final.html">在这里</a>
+</body>
+<script>
+function _0x460d(){var _0x25565e=['11879xqIEyT','真的太逊了！答案错误！','4120sXHxUo','4QcYPnD','Key','(((.+)+)+)+$','a12075b6dd83131906b285b4cb5685cb','innerHTML','1661976EqAvws','424910bEUbvy','MD5','3491785RWFacc','602625CWrPDk','204098nRAzPD','AND','711gavOTj','@RandomLULU','toString','value','apply','909236HLIgzv','constructor'];_0x460d=function(){return _0x25565e;};return _0x460d();}function _0x2d9e(_0x1a051c,_0xff64a3){var _0x351ef5=_0x460d();return _0x2d9e=function(_0x38bb6d,_0x1a0e43){_0x38bb6d=_0x38bb6d-0x136;var _0x460d01=_0x351ef5[_0x38bb6d];return _0x460d01;},_0x2d9e(_0x1a051c,_0xff64a3);}(function(_0x43b1f0,_0x363304){var _0x146728=_0x2d9e,_0x55b467=_0x43b1f0();while(!![]){try{var _0x49020d=-parseInt(_0x146728(0x143))/0x1+-parseInt(_0x146728(0x13c))/0x2+-parseInt(_0x146728(0x13b))/0x3+-parseInt(_0x146728(0x148))/0x4*(parseInt(_0x146728(0x13a))/0x5)+parseInt(_0x146728(0x137))/0x6+parseInt(_0x146728(0x145))/0x7*(-parseInt(_0x146728(0x147))/0x8)+-parseInt(_0x146728(0x13e))/0x9*(-parseInt(_0x146728(0x138))/0xa);if(_0x49020d===_0x363304)break;else _0x55b467['push'](_0x55b467['shift']());}catch(_0x1d1dee){_0x55b467['push'](_0x55b467['shift']());}}}(_0x460d,0xcf5a1));var _0x1a0e43=function(){var _0x1ef540=!![];return function(_0x46a815,_0x56b646){var _0x2b1c04=_0x1ef540?function(){var _0x3053ac=_0x2d9e;if(_0x56b646){var _0x5ab23f=_0x56b646[_0x3053ac(0x142)](_0x46a815,arguments);return _0x56b646=null,_0x5ab23f;}}:function(){};return _0x1ef540=![],_0x2b1c04;};}(),_0x38bb6d=_0x1a0e43(this,function(){var _0x2096b0=_0x2d9e;return _0x38bb6d[_0x2096b0(0x140)]()['search'](_0x2096b0(0x14a))[_0x2096b0(0x140)]()[_0x2096b0(0x144)](_0x38bb6d)['search'](_0x2096b0(0x14a));});_0x38bb6d();function verify(){var _0x563587=_0x2d9e,_0x39f9e2=key['value'],_0xe1e52b=answer[_0x563587(0x141)],_0x5aea56=CryptoJS[_0x563587(0x139)](_0x39f9e2+'WITH'+_0xe1e52b+_0x563587(0x13f));_0x5aea56[_0x563587(0x140)]()==_0x563587(0x14b)?out[_0x563587(0x136)]='正确！下一关key='+CryptoJS['MD5'](_0x563587(0x149)+_0xe1e52b+_0x563587(0x13d)+_0x39f9e2)['toString']():out[_0x563587(0x136)]=_0x563587(0x146);}
+</script>

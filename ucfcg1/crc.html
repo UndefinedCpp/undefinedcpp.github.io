@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>crc.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #E0E2E4; background-color: #293134; }
+.cpp1-assembler { color: #93C763; }
+.cpp1-character { color: #FF8409; }
+.cpp1-class { color: #A082BD; }
+.cpp1-comment { color: #66747B; font-style: italic; }
+.cpp1-escapesequences { color: #FFCD22; }
+.cpp1-float { color: #FFCD22; }
+.cpp1-function { color: #E0E2E4; }
+.cpp1-globalvariable { color: #E0E2E4; }
+.cpp1-hexadecimal { color: #FFCD22; }
+.cpp1-identifier { color: #E0E2E4; }
+.cpp1-illegalchar { color: #FF0000; }
+.cpp1-localvariable { color: #E0E2E4; }
+.cpp1-number { color: #FFCD22; }
+.cpp1-octal { color: #FFCD22; }
+.cpp1-preprocessor { color: #A082BD; }
+.cpp1-reservedword { color: #678CB1; }
+.cpp1-space { background-color: #293134; color: #505050; }
+.cpp1-string { color: #EC7600; }
+.cpp1-symbol { color: #E8E2B7; }
+.cpp1-variable { color: #E0E2E4; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 15pt Consolas;"><span class="cpp1-reservedword">typedef</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">unsigned</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">uint32</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-identifier">uint32</span><span class="cpp1-space"> </span><span class="cpp1-identifier">Crc32Table</span><span class="cpp1-symbol">[</span><span class="cpp1-number">256</span><span class="cpp1-symbol">];
+
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">MakeTable</span><span class="cpp1-symbol">()
+{
+</span><span class="cpp1-space">	</span><span class="cpp1-identifier">uint32</span><span class="cpp1-space"> </span><span class="cpp1-identifier">c</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">i</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-identifier">i</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">256</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">++</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">static_cast</span><span class="cpp1-symbol">&lt;</span><span class="cpp1-identifier">uint32</span><span class="cpp1-symbol">&gt;(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">bit</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-identifier">bit</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">8</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">++</span><span class="cpp1-identifier">bit</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">^</span><span class="cpp1-space"> </span><span class="cpp1-hexadecimal">0xEDB88320</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-identifier">c</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-identifier">Crc32Table</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-identifier">c</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-identifier">uint32</span><span class="cpp1-space"> </span><span class="cpp1-identifier">CRC32</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">const</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">unsigned</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> </span><span class="cpp1-symbol">*</span><span class="cpp1-space"> </span><span class="cpp1-identifier">buf</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">unsigned</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">size</span><span class="cpp1-symbol">)
+{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">unsigned</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> </span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-identifier">crc</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-hexadecimal">0xFFFFFFFF</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">for</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-identifier">i</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-identifier">size</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">++</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-identifier">crc</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-identifier">Crc32Table</span><span class="cpp1-symbol">[(</span><span class="cpp1-identifier">crc</span><span class="cpp1-space"> </span><span class="cpp1-symbol">^</span><span class="cpp1-space"> </span><span class="cpp1-identifier">buf</span><span class="cpp1-symbol">[</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">])</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;</span><span class="cpp1-space"> </span><span class="cpp1-hexadecimal">0xFF</span><span class="cpp1-symbol">]</span><span class="cpp1-space"> </span><span class="cpp1-symbol">^</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">crc</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> </span><span class="cpp1-number">8</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-identifier">crc</span><span class="cpp1-space"> </span><span class="cpp1-symbol">^</span><span class="cpp1-space"> </span><span class="cpp1-hexadecimal">0xFFFFFFFF</span><span class="cpp1-symbol">;
+}
+</span></span>
+</code></pre>
+</body>
+</html>
